@@ -15,13 +15,13 @@ export function Blog() {
     .sort((a, b) => b.published.localeCompare(a.published));
   return (
     <div>
-      <h1 className="mb-6 text-3xl font-bold text-white">Compliance guides</h1>
+      <h1 className="mb-6 text-3xl font-bold text-ink">Compliance guides</h1>
       <div className="space-y-4">
         {allPosts.map((p) => (
-          <Link key={p.slug} to={`/blog/${p.slug}`} className="card block hover:border-gold">
-            <h2 className="font-semibold text-white">{p.title}</h2>
-            <p className="mt-1 text-sm text-zinc-400">{p.description}</p>
-            <p className="mt-1 text-xs text-zinc-500">{p.published}</p>
+          <Link key={p.slug} to={`/blog/${p.slug}`} className="card block hover:border-da">
+            <h2 className="font-semibold text-ink">{p.title}</h2>
+            <p className="mt-1 text-sm text-ink-3">{p.description}</p>
+            <p className="mt-1 text-xs text-ink-3">{p.published}</p>
           </Link>
         ))}
       </div>
@@ -81,15 +81,15 @@ export function BlogPost() {
     return () => { scripts.forEach((s) => document.head.removeChild(s)); };
   }, [post]);
 
-  if (missing) return <p>Post not found. <Link to="/blog" className="text-gold">Back to blog</Link></p>;
+  if (missing) return <p>Post not found. <Link to="/blog" className="text-da">Back to blog</Link></p>;
   if (!post) return <p>Loading…</p>;
   return (
     <article className="mx-auto max-w-2xl">
-      <h1 className="mb-2 text-3xl font-bold text-white">{post.title}</h1>
-      <time className="text-xs text-zinc-500">{post.published}</time>
-      <div className="mt-6 space-y-4 text-zinc-300">{post.body.map((para, i) => <p key={i}>{para}</p>)}</div>
+      <h1 className="mb-2 text-3xl font-bold text-ink">{post.title}</h1>
+      <time className="text-xs text-ink-3">{post.published}</time>
+      <div className="mt-6 space-y-4 text-ink-2">{post.body.map((para, i) => <p key={i}>{para}</p>)}</div>
       <div className="card mt-10 text-center">
-        <p className="mb-3 text-white">Get your full personalised compliance calendar, free.</p>
+        <p className="mb-3 text-ink">Get your full personalised compliance calendar, free.</p>
         <Link to="/" className="btn">Run the free health check</Link>
       </div>
       <div className="mt-6">

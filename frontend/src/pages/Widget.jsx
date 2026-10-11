@@ -9,8 +9,8 @@ export default function Widget() {
   useEffect(() => setMeta('Embeddable Compliance Widget | DoAide Comply', 'Add an upcoming compliance deadlines widget to your website or blog.'), []);
   return (
     <div className="mx-auto max-w-2xl">
-      <h1 className="mb-2 text-3xl font-bold text-white">Embed the compliance widget</h1>
-      <p className="mb-6 text-zinc-400">CAs, accountants and business blogs: paste two lines to show upcoming deadlines on your site.</p>
+      <h1 className="mb-2 text-3xl font-bold text-ink">Embed the compliance widget</h1>
+      <p className="mb-6 text-ink-3">CAs, accountants and business blogs: paste two lines to show upcoming deadlines on your site.</p>
       <div className="card space-y-4">
         <div className="grid gap-4 sm:grid-cols-2">
           <div><label htmlFor="wt" className="label">Business type</label>

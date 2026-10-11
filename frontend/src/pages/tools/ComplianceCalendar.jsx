@@ -106,10 +106,10 @@ export function buildCalendarEntries() {
 
 function getStatus(dueDate, today) {
   const diff = Math.ceil((dueDate - today) / (1000 * 60 * 60 * 24));
-  if (diff < 0) return { label: 'Overdue', class: 'bg-red-500/20 text-red-400', diff };
-  if (diff <= 7) return { label: 'This week', class: 'bg-red-500/20 text-red-400', diff };
-  if (diff <= 30) return { label: 'This month', class: 'bg-amber-500/20 text-amber-400', diff };
-  return { label: `${diff} days`, class: 'bg-green-500/20 text-green-400', diff };
+  if (diff < 0) return { label: 'Overdue', class: 'bg-red-100 text-red-600', diff };
+  if (diff <= 7) return { label: 'This week', class: 'bg-red-100 text-red-600', diff };
+  if (diff <= 30) return { label: 'This month', class: 'bg-amber-100 text-amber-700', diff };
+  return { label: `${diff} days`, class: 'bg-green-100 text-green-700', diff };
 }
 
 export default function ComplianceCalendar() {
@@ -159,37 +159,37 @@ export default function ComplianceCalendar() {
 
   return (
     <div className="mx-auto max-w-3xl">
-      <h1 className="mb-2 text-3xl font-bold text-white">Compliance Calendar FY 2026-27</h1>
-      <p className="mb-6 text-zinc-400">
+      <h1 className="mb-2 text-3xl font-bold text-ink">Compliance Calendar FY 2026-27</h1>
+      <p className="mb-6 text-ink-3">
         Every GST, TDS, ROC, PF/ESI, Income Tax and Professional Tax deadline for Indian businesses. No login required.
       </p>
 
       <div className="mb-6 grid gap-4 sm:grid-cols-3">
-        <StatCard label="Total filings" value={stats.total} color="text-gold" />
-        <StatCard label="Due in 30 days" value={stats.upcoming} color="text-amber-400" />
-        <StatCard label="Overdue" value={stats.overdue} color="text-red-400" />
+        <StatCard label="Total filings" value={stats.total} color="text-da" />
+        <StatCard label="Due in 30 days" value={stats.upcoming} color="text-amber-600" />
+        <StatCard label="Overdue" value={stats.overdue} color="text-red-500" />
       </div>
 
       <div className="mb-4 flex flex-wrap gap-2" role="tablist" aria-label="Filter by category">
         {CATEGORIES.map((c) => (
           <button key={c} role="tab" aria-selected={category === c} onClick={() => setCategory(c)}
-            className={`rounded-full border px-3 py-1 text-sm ${category === c ? 'border-gold bg-gold text-ink' : 'border-zinc-700 text-zinc-300 hover:border-gold'}`}>
+            className={`rounded-full border px-3 py-1 text-sm ${category === c ? 'border-da bg-da text-white' : 'border-slate-300 text-ink-2 hover:border-da'}`}>
             {c}
           </button>
         ))}
       </div>
 
       <div className="mb-6 flex gap-3">
-        <button onClick={() => setView('upcoming')} className={`text-sm ${view === 'upcoming' ? 'text-gold font-semibold' : 'text-zinc-400 hover:text-gold'}`}>Upcoming</button>
-        <button onClick={() => setView('all')} className={`text-sm ${view === 'all' ? 'text-gold font-semibold' : 'text-zinc-400 hover:text-gold'}`}>All FY</button>
+        <button onClick={() => setView('upcoming')} className={`text-sm ${view === 'upcoming' ? 'text-da font-semibold' : 'text-ink-3 hover:text-da'}`}>Upcoming</button>
+        <button onClick={() => setView('all')} className={`text-sm ${view === 'all' ? 'text-da font-semibold' : 'text-ink-3 hover:text-da'}`}>All FY</button>
       </div>
 
       {grouped.length === 0 ? (
-        <p className="text-zinc-500" data-testid="no-results">No deadlines found for the selected filter.</p>
+        <p className="text-ink-3" data-testid="no-results">No deadlines found for the selected filter.</p>
       ) : (
         grouped.map(([monthKey, items]) => (
           <div key={monthKey} className="mb-8">
-            <h2 className="mb-3 text-lg font-semibold text-zinc-300" data-testid="month-group">
+            <h2 className="mb-3 text-lg font-semibold text-ink-2" data-testid="month-group">
               {new Date(monthKey + '-01T00:00:00').toLocaleDateString('en-IN', { month: 'long', year: 'numeric' })}
             </h2>
             <div className="space-y-2">
@@ -200,14 +200,14 @@ export default function ComplianceCalendar() {
                     <div className="flex flex-wrap items-start justify-between gap-2">
                       <div className="min-w-0 flex-1">
                         <div className="flex flex-wrap items-center gap-2">
-                          <span className="text-xs font-medium text-gold">{item.category}</span>
+                          <span className="text-xs font-medium text-da">{item.category}</span>
                           <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${status.class}`} data-testid="status-badge">{status.label}</span>
                         </div>
-                        <h3 className="mt-1 font-semibold text-white">{item.form}</h3>
-                        <p className="mt-0.5 text-sm text-zinc-400">{item.title}</p>
-                        <p className="mt-1 text-xs text-red-300/80">Late fee: {item.lateFee}</p>
+                        <h3 className="mt-1 font-semibold text-ink">{item.form}</h3>
+                        <p className="mt-0.5 text-sm text-ink-3">{item.title}</p>
+                        <p className="mt-1 text-xs text-red-500/80">Late fee: {item.lateFee}</p>
                       </div>
-                      <div className="shrink-0 rounded-lg bg-ink-3 px-3 py-1 text-sm font-medium text-gold">
+                      <div className="shrink-0 rounded-lg bg-surface-3 px-3 py-1 text-sm font-medium text-da">
                         {formatDate(item.dueDate)}
                       </div>
                     </div>
@@ -220,7 +220,7 @@ export default function ComplianceCalendar() {
       )}
 
       <div className="card mt-10 text-center">
-        <p className="mb-3 text-white">Want personalised reminders for your specific business?</p>
+        <p className="mb-3 text-ink">Want personalised reminders for your specific business?</p>
         <Link to="/" className="btn">Run the free health check</Link>
       </div>
 
@@ -237,7 +237,7 @@ function StatCard({ label, value, color }) {
   return (
     <div className="card text-center" data-testid="stat-card">
       <div className={`text-2xl font-bold ${color}`}>{value}</div>
-      <div className="mt-1 text-xs text-zinc-400">{label}</div>
+      <div className="mt-1 text-xs text-ink-3">{label}</div>
     </div>
   );
 }
@@ -253,15 +253,15 @@ const FAQ_ITEMS = [
 function CalendarFAQ() {
   return (
     <section className="mt-16 mb-8">
-      <h2 className="mb-6 text-center text-2xl font-bold text-white">Compliance Calendar FAQ</h2>
+      <h2 className="mb-6 text-center text-2xl font-bold text-ink">Compliance Calendar FAQ</h2>
       <div className="mx-auto max-w-3xl space-y-3">
         {FAQ_ITEMS.map((item, i) => (
           <details key={i} className="group card !p-0 overflow-hidden">
-            <summary className="flex cursor-pointer items-center justify-between px-5 py-4 text-sm font-medium text-white list-none">
+            <summary className="flex cursor-pointer items-center justify-between px-5 py-4 text-sm font-medium text-ink list-none">
               {item.q}
-              <span className="ml-2 text-gold transition-transform group-open:rotate-45">+</span>
+              <span className="ml-2 text-da transition-transform group-open:rotate-45">+</span>
             </summary>
-            <p className="px-5 pb-4 text-sm leading-relaxed text-zinc-400">{item.a}</p>
+            <p className="px-5 pb-4 text-sm leading-relaxed text-ink-3">{item.a}</p>
           </details>
         ))}
       </div>

@@ -15,7 +15,7 @@ export default function CalendarList({ items, renderExtra }) {
       <div className="mb-4 flex flex-wrap gap-2" role="tablist" aria-label="Filter by category">
         {['All', ...present].map((c) => (
           <button key={c} role="tab" aria-selected={cat === c} onClick={() => setCat(c)}
-            className={`rounded-full border px-3 py-1 text-sm ${cat === c ? 'border-gold bg-gold text-ink' : 'border-zinc-700 text-zinc-300 hover:border-gold'}`}>
+            className={`rounded-full border px-3 py-1 text-sm ${cat === c ? 'border-da bg-da text-white' : 'border-slate-300 text-ink-2 hover:border-da'}`}>
             {c}
           </button>
         ))}
@@ -24,12 +24,12 @@ export default function CalendarList({ items, renderExtra }) {
         {shown.map((i) => (
           <li key={i.id} className="card !p-4" data-testid="calendar-item">
             <div className="flex flex-wrap items-baseline justify-between gap-2">
-              <span className="font-semibold text-white">{i.title}</span>
-              <span className="font-mono text-gold">{formatDate(i.due_date)}</span>
+              <span className="font-semibold text-ink">{i.title}</span>
+              <span className="font-mono text-da">{formatDate(i.due_date)}</span>
             </div>
-            <div className="mt-1 text-xs text-zinc-500">{i.category} &middot; {i.form}{i.conditional ? ' · if applicable' : ''}</div>
-            <p className="mt-2 text-sm text-zinc-400">{i.description}</p>
-            <p className="mt-1 text-sm text-red-300/90">Penalty: {i.penalty}</p>
+            <div className="mt-1 text-xs text-ink-3">{i.category} &middot; {i.form}{i.conditional ? ' · if applicable' : ''}</div>
+            <p className="mt-2 text-sm text-ink-3">{i.description}</p>
+            <p className="mt-1 text-sm text-red-500/90">Penalty: {i.penalty}</p>
             {renderExtra && renderExtra(i)}
           </li>
         ))}

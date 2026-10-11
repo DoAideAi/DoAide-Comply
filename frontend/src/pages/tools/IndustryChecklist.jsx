@@ -143,8 +143,8 @@ export default function IndustryChecklist() {
 
   return (
     <div className="mx-auto max-w-3xl">
-      <h1 className="mb-2 text-3xl font-bold text-white">Industry Compliance Checklist</h1>
-      <p className="mb-6 text-zinc-400">
+      <h1 className="mb-2 text-3xl font-bold text-ink">Industry Compliance Checklist</h1>
+      <p className="mb-6 text-ink-3">
         Complete compliance checklist by industry. Select your industry to see all applicable regulations, filing requirements, and penalties.
       </p>
 
@@ -160,8 +160,8 @@ export default function IndustryChecklist() {
       <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
         {Object.entries(areaStats).slice(0, 4).map(([area, count]) => (
           <div key={area} className="card !p-3 text-center" data-testid="area-stat">
-            <div className="text-lg font-bold text-gold">{count}</div>
-            <div className="text-xs text-zinc-400">{area}</div>
+            <div className="text-lg font-bold text-da">{count}</div>
+            <div className="text-xs text-ink-3">{area}</div>
           </div>
         ))}
       </div>
@@ -169,7 +169,7 @@ export default function IndustryChecklist() {
       <div className="mb-4 flex flex-wrap gap-2" role="tablist" aria-label="Filter by compliance area">
         {areas.map((a) => (
           <button key={a} role="tab" aria-selected={areaFilter === a} onClick={() => setAreaFilter(a)}
-            className={`rounded-full border px-3 py-1 text-xs ${areaFilter === a ? 'border-gold bg-gold text-ink' : 'border-zinc-700 text-zinc-300 hover:border-gold'}`}>
+            className={`rounded-full border px-3 py-1 text-xs ${areaFilter === a ? 'border-da bg-da text-white' : 'border-slate-300 text-ink-2 hover:border-da'}`}>
             {a}
           </button>
         ))}
@@ -179,14 +179,14 @@ export default function IndustryChecklist() {
         {filtered.map((item, i) => (
           <div key={i} className="card !p-4" data-testid="checklist-item">
             <div className="flex items-start gap-3">
-              <div className="mt-0.5 h-4 w-4 shrink-0 rounded border border-zinc-600" />
+              <div className="mt-0.5 h-4 w-4 shrink-0 rounded border border-slate-300" />
               <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-xs font-medium text-gold">{item.area}</span>
-                  <span className="rounded-full bg-ink-3 px-2 py-0.5 text-xs text-zinc-400">{item.frequency}</span>
+                  <span className="text-xs font-medium text-da">{item.area}</span>
+                  <span className="rounded-full bg-surface-3 px-2 py-0.5 text-xs text-ink-3">{item.frequency}</span>
                 </div>
-                <p className="mt-1 text-sm text-zinc-200">{item.task}</p>
-                <p className="mt-1 text-xs text-red-300/80">Penalty: {item.penalty}</p>
+                <p className="mt-1 text-sm text-ink">{item.task}</p>
+                <p className="mt-1 text-xs text-red-500/80">Penalty: {item.penalty}</p>
               </div>
             </div>
           </div>
@@ -194,7 +194,7 @@ export default function IndustryChecklist() {
       </div>
 
       <div className="card mt-10 text-center">
-        <p className="mb-3 text-white">Get automated deadline reminders for your {industry.name.toLowerCase()} business.</p>
+        <p className="mb-3 text-ink">Get automated deadline reminders for your {industry.name.toLowerCase()} business.</p>
         <Link to="/" className="btn">Run the free health check</Link>
       </div>
 

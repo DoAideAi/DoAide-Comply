@@ -45,8 +45,8 @@ export default function Home() {
     <div>
       <section className="mb-8 text-center">
         <div className="mb-3 flex justify-center"><RobotFace size={64} /></div>
-        <h1 className="text-3xl font-bold text-white md:text-4xl">Free Compliance Health Check for Indian Businesses</h1>
-        <p className="mx-auto mt-3 max-w-2xl text-zinc-400">
+        <h1 className="text-3xl font-bold text-ink md:text-4xl">Free Compliance Health Check for Indian Businesses</h1>
+        <p className="mx-auto mt-3 max-w-2xl text-ink-3">
           Pick your business type and state. Get every GST, TDS, ROC, PF/ESI, income tax and professional tax deadline for FY 2026-27, with late-fee penalties. No login.
         </p>
       </section>
@@ -68,7 +68,7 @@ export default function Home() {
         </div>
         <div className="flex flex-wrap gap-4 text-sm">
           {[['has_gst', 'GST registered'], ['has_employees', 'Has employees'], ['has_tds', 'Deducts TDS']].map(([k, l]) => (
-            <label key={k} className="flex items-center gap-2"><input type="checkbox" checked={form[k]} onChange={set(k)} /> {l}</label>
+            <label key={k} className="flex items-center gap-2"><input type="checkbox" checked={form[k]} onChange={set(k)} className="accent-da" /> {l}</label>
           ))}
         </div>
         <div>
@@ -76,7 +76,7 @@ export default function Home() {
           <input id="em" type="email" className="input" value={form.email} onChange={set('email')} placeholder="you@company.com" />
         </div>
         <button className="btn w-full" disabled={loading}>{loading ? 'Building your calendar…' : 'Get my compliance calendar'}</button>
-        {error && <p role="alert" className="text-sm text-red-400">{error}</p>}
+        {error && <p role="alert" className="text-sm text-red-500">{error}</p>}
       </form>
 
       {result && (
@@ -91,7 +91,7 @@ export default function Home() {
             <a className="btn-ghost" href="/pricing">Get automatic reminders</a>
           </div>
           <CalendarList items={result.calendar} />
-          <p className="mt-4 text-xs text-zinc-500">*Estimate of fixed/per-day late fees across non-conditional filings. {result.disclaimer}</p>
+          <p className="mt-4 text-xs text-ink-3">*Estimate of fixed/per-day late fees across non-conditional filings. {result.disclaimer}</p>
         </section>
       )}
 
@@ -113,14 +113,14 @@ function FreeTools() {
   ];
   return (
     <section className="mt-16">
-      <h2 className="mb-6 text-center text-2xl font-bold text-white">
-        Free <span className="text-gold">Compliance Tools</span>
+      <h2 className="mb-6 text-center text-2xl font-bold text-ink">
+        Free <span className="text-da">Compliance Tools</span>
       </h2>
       <div className="grid gap-4 sm:grid-cols-2">
         {tools.map((t) => (
-          <Link key={t.to} to={t.to} className="card block transition-colors hover:border-gold/50">
-            <h3 className="font-semibold text-white">{t.name}</h3>
-            <p className="mt-1 text-sm text-zinc-400">{t.desc}</p>
+          <Link key={t.to} to={t.to} className="card block transition-colors hover:border-da/50">
+            <h3 className="font-semibold text-ink">{t.name}</h3>
+            <p className="mt-1 text-sm text-ink-3">{t.desc}</p>
           </Link>
         ))}
       </div>
@@ -137,16 +137,16 @@ function Testimonials() {
   ];
   return (
     <section className="mt-16">
-      <h2 className="mb-6 text-center text-2xl font-bold text-white">
-        Trusted by <span className="text-gold">Indian Businesses</span>
+      <h2 className="mb-6 text-center text-2xl font-bold text-ink">
+        Trusted by <span className="text-da">Indian Businesses</span>
       </h2>
       <div className="grid gap-4 sm:grid-cols-2">
         {reviews.map((t) => (
           <div key={t.name} className="card">
-            <p className="mb-4 text-sm leading-relaxed text-zinc-400">"{t.text}"</p>
+            <p className="mb-4 text-sm leading-relaxed text-ink-3">"{t.text}"</p>
             <div>
-              <p className="text-sm font-semibold text-white">{t.name}</p>
-              <p className="text-xs text-zinc-500">{t.role} &middot; {t.location}</p>
+              <p className="text-sm font-semibold text-ink">{t.name}</p>
+              <p className="text-xs text-ink-3">{t.role} &middot; {t.location}</p>
             </div>
           </div>
         ))}
@@ -166,15 +166,15 @@ function FAQ() {
   ];
   return (
     <section className="mt-16 mb-8">
-      <h2 className="mb-6 text-center text-2xl font-bold text-white">Frequently Asked Questions</h2>
+      <h2 className="mb-6 text-center text-2xl font-bold text-ink">Frequently Asked Questions</h2>
       <div className="mx-auto max-w-3xl space-y-3">
         {items.map((item, i) => (
           <details key={i} className="group card !p-0 overflow-hidden">
-            <summary className="flex cursor-pointer items-center justify-between px-5 py-4 text-sm font-medium text-white list-none">
+            <summary className="flex cursor-pointer items-center justify-between px-5 py-4 text-sm font-medium text-ink list-none">
               {item.q}
-              <span className="ml-2 text-gold transition-transform group-open:rotate-45">+</span>
+              <span className="ml-2 text-da transition-transform group-open:rotate-45">+</span>
             </summary>
-            <p className="px-5 pb-4 text-sm leading-relaxed text-zinc-400">{item.a}</p>
+            <p className="px-5 pb-4 text-sm leading-relaxed text-ink-3">{item.a}</p>
           </details>
         ))}
       </div>
@@ -185,8 +185,8 @@ function FAQ() {
 function Stat({ label, value }) {
   return (
     <div className="card text-center">
-      <div className="text-2xl font-bold text-gold">{value}</div>
-      <div className="mt-1 text-xs text-zinc-400">{label}</div>
+      <div className="text-2xl font-bold text-da">{value}</div>
+      <div className="mt-1 text-xs text-ink-3">{label}</div>
     </div>
   );
 }

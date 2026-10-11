@@ -40,8 +40,8 @@ export default function TdsRateFinder() {
 
   return (
     <div className="mx-auto max-w-4xl">
-      <h1 className="mb-2 text-3xl font-bold text-white">TDS Rate Finder</h1>
-      <p className="mb-6 text-zinc-400">Look up TDS rates by payment type or section number. Rates for FY 2026-27 (AY 2027-28).</p>
+      <h1 className="mb-2 text-3xl font-bold text-ink">TDS Rate Finder</h1>
+      <p className="mb-6 text-ink-3">Look up TDS rates by payment type or section number. Rates for FY 2026-27 (AY 2027-28).</p>
 
       <div className="mb-6">
         <label htmlFor="search" className="label">Search by section or payment type</label>
@@ -51,7 +51,7 @@ export default function TdsRateFinder() {
       <div className="overflow-x-auto">
         <table className="w-full text-sm" role="table">
           <thead>
-            <tr className="border-b border-zinc-800 text-left text-xs text-zinc-500">
+            <tr className="border-b border-slate-200 text-left text-xs text-ink-3">
               <th className="px-3 py-2">Section</th>
               <th className="px-3 py-2">Payment type</th>
               <th className="px-3 py-2">Individual/HUF</th>
@@ -61,24 +61,24 @@ export default function TdsRateFinder() {
           </thead>
           <tbody>
             {filtered.map((r) => (
-              <tr key={r.section} className="border-b border-zinc-800/50 hover:bg-ink-2" data-testid="tds-row">
-                <td className="px-3 py-2 font-medium text-gold">{r.section}</td>
-                <td className="px-3 py-2 text-zinc-200">{r.payment}</td>
-                <td className="px-3 py-2 text-zinc-300">{r.rateIndividual}</td>
-                <td className="px-3 py-2 text-zinc-300">{r.rateOthers}</td>
-                <td className="px-3 py-2 text-zinc-400">{r.threshold}</td>
+              <tr key={r.section} className="border-b border-slate-100 hover:bg-surface-2" data-testid="tds-row">
+                <td className="px-3 py-2 font-medium text-da">{r.section}</td>
+                <td className="px-3 py-2 text-ink">{r.payment}</td>
+                <td className="px-3 py-2 text-ink-2">{r.rateIndividual}</td>
+                <td className="px-3 py-2 text-ink-2">{r.rateOthers}</td>
+                <td className="px-3 py-2 text-ink-3">{r.threshold}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
 
-      {filtered.length === 0 && <p className="mt-4 text-center text-zinc-500">No matching sections found.</p>}
+      {filtered.length === 0 && <p className="mt-4 text-center text-ink-3">No matching sections found.</p>}
 
-      <p className="mt-4 text-xs text-zinc-500">Rates are without surcharge/cess. If deductee does not provide PAN, TDS is deducted at 20% or the applicable rate, whichever is higher.</p>
+      <p className="mt-4 text-xs text-ink-3">Rates are without surcharge/cess. If deductee does not provide PAN, TDS is deducted at 20% or the applicable rate, whichever is higher.</p>
 
       <div className="card mt-10 text-center">
-        <p className="mb-3 text-white">Track all your TDS deadlines automatically.</p>
+        <p className="mb-3 text-ink">Track all your TDS deadlines automatically.</p>
         <Link to="/" className="btn">Run the free health check</Link>
       </div>
 

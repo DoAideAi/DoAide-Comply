@@ -23,13 +23,13 @@ function AuthForm({ mode }) {
 
   return (
     <form onSubmit={submit} className="card mx-auto max-w-sm space-y-4" aria-label={register ? 'Register' : 'Log in'}>
-      <h1 className="text-2xl font-bold text-white">{register ? 'Create your account' : 'Log in'}</h1>
+      <h1 className="text-2xl font-bold text-ink">{register ? 'Create your account' : 'Log in'}</h1>
       {register && <div><label htmlFor="n" className="label">Name</label><input id="n" className="input" value={f.name} onChange={set('name')} /></div>}
       <div><label htmlFor="e" className="label">Email</label><input id="e" type="email" required className="input" value={f.email} onChange={set('email')} /></div>
       <div><label htmlFor="p" className="label">Password</label><input id="p" type="password" required minLength={8} className="input" value={f.password} onChange={set('password')} /></div>
       <button className="btn w-full">{register ? 'Sign up' : 'Log in'}</button>
-      {error && <p role="alert" className="text-sm text-red-400">{error}</p>}
-      <p className="text-sm text-zinc-400">{register ? <>Have an account? <Link className="text-gold" to="/login">Log in</Link></> : <>New here? <Link className="text-gold" to="/register">Sign up free</Link></>}</p>
+      {error && <p role="alert" className="text-sm text-red-500">{error}</p>}
+      <p className="text-sm text-ink-3">{register ? <>Have an account? <Link className="text-da" to="/login">Log in</Link></> : <>New here? <Link className="text-da" to="/register">Sign up free</Link></>}</p>
     </form>
   );
 }

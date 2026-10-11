@@ -167,15 +167,15 @@ export function computeDeadlines(incorporationDate, agmDate, fyEnd, today) {
 
 function StatusBadge({ status, days }) {
   if (status === 'overdue') {
-    return <span className="rounded-full bg-red-500/20 px-3 py-1 text-xs font-semibold text-red-400" data-testid="badge-overdue">{Math.abs(days)} days overdue</span>;
+    return <span className="rounded-full bg-red-100 px-3 py-1 text-xs font-semibold text-red-600" data-testid="badge-overdue">{Math.abs(days)} days overdue</span>;
   }
   if (status === 'upcoming') {
-    return <span className="rounded-full bg-amber-500/20 px-3 py-1 text-xs font-semibold text-amber-400" data-testid="badge-upcoming">{days} days left</span>;
+    return <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-700" data-testid="badge-upcoming">{days} days left</span>;
   }
   if (status === 'safe') {
-    return <span className="rounded-full bg-green-500/20 px-3 py-1 text-xs font-semibold text-green-400" data-testid="badge-safe">{days} days left</span>;
+    return <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700" data-testid="badge-safe">{days} days left</span>;
   }
-  return <span className="rounded-full bg-zinc-700 px-3 py-1 text-xs font-semibold text-zinc-400" data-testid="badge-unknown">Enter dates to calculate</span>;
+  return <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-ink-3" data-testid="badge-unknown">Enter dates to calculate</span>;
 }
 
 const FAQ_ITEMS = [
@@ -250,8 +250,8 @@ export default function RocFilingTracker() {
 
   return (
     <div className="mx-auto max-w-3xl">
-      <h1 className="mb-2 text-3xl font-bold text-white">ROC Filing Deadline Tracker</h1>
-      <p className="mb-6 text-zinc-400">
+      <h1 className="mb-2 text-3xl font-bold text-ink">ROC Filing Deadline Tracker</h1>
+      <p className="mb-6 text-ink-3">
         Track all major ROC filing deadlines for your Indian company. Enter your dates below to see exactly when each form is due, days remaining, and penalties for late filing. No login required.
       </p>
 
@@ -294,9 +294,9 @@ export default function RocFilingTracker() {
       {deadlines && (
         <section className="mt-8" aria-live="polite">
           <div className="mb-6 grid gap-4 sm:grid-cols-3">
-            <SummaryCard label="Overdue" value={deadlines.filter((d) => d.status === 'overdue').length} color="text-red-400" />
-            <SummaryCard label="Due within 30 days" value={deadlines.filter((d) => d.status === 'upcoming').length} color="text-amber-400" />
-            <SummaryCard label="Safe (>30 days)" value={deadlines.filter((d) => d.status === 'safe').length} color="text-green-400" />
+            <SummaryCard label="Overdue" value={deadlines.filter((d) => d.status === 'overdue').length} color="text-red-500" />
+            <SummaryCard label="Due within 30 days" value={deadlines.filter((d) => d.status === 'upcoming').length} color="text-amber-600" />
+            <SummaryCard label="Safe (>30 days)" value={deadlines.filter((d) => d.status === 'safe').length} color="text-green-600" />
           </div>
 
           <div className="space-y-3">
@@ -305,21 +305,21 @@ export default function RocFilingTracker() {
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
-                      <h3 className="font-semibold text-white">{d.form}</h3>
+                      <h3 className="font-semibold text-ink">{d.form}</h3>
                       <StatusBadge status={d.status} days={d.daysRemaining} />
                     </div>
-                    <p className="mt-1 text-sm text-zinc-400">{d.title}</p>
-                    <p className="mt-1 text-xs text-zinc-500">Rule: {d.rule}</p>
+                    <p className="mt-1 text-sm text-ink-3">{d.title}</p>
+                    <p className="mt-1 text-xs text-ink-3">Rule: {d.rule}</p>
                   </div>
                   {d.dueDate && (
-                    <div className="shrink-0 rounded-lg bg-ink-3 px-3 py-1 text-sm font-medium text-gold">
+                    <div className="shrink-0 rounded-lg bg-surface-3 px-3 py-1 text-sm font-medium text-da">
                       {formatDate(d.dueDate)}
                     </div>
                   )}
                 </div>
                 <details className="mt-3">
-                  <summary className="cursor-pointer text-xs font-medium text-gold">Penalty for late filing</summary>
-                  <p className="mt-2 text-xs leading-relaxed text-zinc-400" data-testid="penalty-info">{d.penalty}</p>
+                  <summary className="cursor-pointer text-xs font-medium text-da">Penalty for late filing</summary>
+                  <p className="mt-2 text-xs leading-relaxed text-ink-3" data-testid="penalty-info">{d.penalty}</p>
                 </details>
               </div>
             ))}
@@ -332,20 +332,20 @@ export default function RocFilingTracker() {
       )}
 
       <div className="card mt-10 text-center">
-        <p className="mb-3 text-white">Want automated reminders for all compliance deadlines?</p>
+        <p className="mb-3 text-ink">Want automated reminders for all compliance deadlines?</p>
         <Link to="/" className="btn">Run the free health check</Link>
       </div>
 
       <section className="mt-16 mb-8">
-        <h2 className="mb-6 text-center text-2xl font-bold text-white">ROC Filing FAQ</h2>
+        <h2 className="mb-6 text-center text-2xl font-bold text-ink">ROC Filing FAQ</h2>
         <div className="mx-auto max-w-3xl space-y-3">
           {FAQ_ITEMS.map((item, i) => (
             <details key={i} className="group card !p-0 overflow-hidden">
-              <summary className="flex cursor-pointer items-center justify-between px-5 py-4 text-sm font-medium text-white list-none">
+              <summary className="flex cursor-pointer items-center justify-between px-5 py-4 text-sm font-medium text-ink list-none">
                 {item.q}
-                <span className="ml-2 text-gold transition-transform group-open:rotate-45">+</span>
+                <span className="ml-2 text-da transition-transform group-open:rotate-45">+</span>
               </summary>
-              <p className="px-5 pb-4 text-sm leading-relaxed text-zinc-400">{item.a}</p>
+              <p className="px-5 pb-4 text-sm leading-relaxed text-ink-3">{item.a}</p>
             </details>
           ))}
         </div>
@@ -362,7 +362,7 @@ function SummaryCard({ label, value, color }) {
   return (
     <div className="card text-center" data-testid="summary-card">
       <div className={`text-2xl font-bold ${color}`}>{value}</div>
-      <div className="mt-1 text-xs text-zinc-400">{label}</div>
+      <div className="mt-1 text-xs text-ink-3">{label}</div>
     </div>
   );
 }

@@ -44,13 +44,13 @@ export default function Dashboard() {
   return (
     <div className="space-y-8">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-2xl font-bold text-white">Dashboard <span className="ml-2 rounded bg-gold px-2 py-0.5 text-xs text-ink">{me.plan}</span></h1>
+        <h1 className="text-2xl font-bold text-ink">Dashboard <span className="ml-2 rounded bg-da px-2 py-0.5 text-xs text-white">{me.plan}</span></h1>
         <button className="btn-ghost" onClick={() => { setToken(null); nav('/'); }}>Log out</button>
       </div>
-      {msg && <p role="alert" className="rounded border border-red-500/40 bg-red-500/10 p-3 text-sm text-red-300">{msg}</p>}
+      {msg && <p role="alert" className="rounded border border-red-300 bg-red-50 p-3 text-sm text-red-600">{msg}</p>}
 
       <section className="card">
-        <h2 className="mb-3 font-semibold text-white">Businesses</h2>
+        <h2 className="mb-3 font-semibold text-ink">Businesses</h2>
         <div className="mb-4 flex flex-wrap gap-2">
           {biz.map((b) => <button key={b.id} onClick={() => setActive(b.id)} className={active === b.id ? 'btn !py-1' : 'btn-ghost !py-1'}>{b.name}</button>)}
         </div>
@@ -68,14 +68,14 @@ export default function Dashboard() {
         <>
           <section className="grid gap-5 md:grid-cols-2">
             <form className="card space-y-2" onSubmit={run(async () => { await api(`/businesses/${active}/members`, { method: 'POST', body: member, auth: true }); setMember({ ...member, email: '' }); await loadCal(); })}>
-              <h2 className="font-semibold text-white">Team and CA</h2>
-              <ul className="text-sm text-zinc-400">{members.map((m) => <li key={m.id}>{m.email} ({m.role})</li>)}</ul>
+              <h2 className="font-semibold text-ink">Team and CA</h2>
+              <ul className="text-sm text-ink-3">{members.map((m) => <li key={m.id}>{m.email} ({m.role})</li>)}</ul>
               <input className="input" type="email" required placeholder="email" value={member.email} onChange={(e) => setMember({ ...member, email: e.target.value })} aria-label="Member email" />
               <select className="input" value={member.role} onChange={(e) => setMember({ ...member, role: e.target.value })} aria-label="Member role"><option value="member">Team member (Pro)</option><option value="ca">CA (Enterprise)</option></select>
               <button className="btn">Invite</button>
             </form>
             <form className="card space-y-2" onSubmit={run(async () => { await api(`/businesses/${active}/reminders`, { method: 'POST', body: { ...rem, days_before: Number(rem.days_before) }, auth: true }); setMsg('Reminder saved'); })}>
-              <h2 className="font-semibold text-white">Reminders (Pro)</h2>
+              <h2 className="font-semibold text-ink">Reminders (Pro)</h2>
               <select className="input" value={rem.channel} onChange={(e) => setRem({ ...rem, channel: e.target.value })} aria-label="Reminder channel"><option value="email">Email</option><option value="whatsapp">WhatsApp</option></select>
               <input className="input" required placeholder="Email or WhatsApp number" value={rem.destination} onChange={(e) => setRem({ ...rem, destination: e.target.value })} aria-label="Reminder destination" />
               <input className="input" type="number" min="0" max="30" value={rem.days_before} onChange={(e) => setRem({ ...rem, days_before: e.target.value })} aria-label="Days before" />

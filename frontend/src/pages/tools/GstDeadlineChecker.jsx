@@ -66,8 +66,8 @@ export default function GstDeadlineChecker() {
 
   return (
     <div className="mx-auto max-w-2xl">
-      <h1 className="mb-2 text-3xl font-bold text-white">GST Deadline Checker</h1>
-      <p className="mb-6 text-zinc-400">Check your upcoming GST filing deadlines for FY 2026-27. All dates are statutory defaults.</p>
+      <h1 className="mb-2 text-3xl font-bold text-ink">GST Deadline Checker</h1>
+      <p className="mb-6 text-ink-3">Check your upcoming GST filing deadlines for FY 2026-27. All dates are statutory defaults.</p>
 
       <div className="card space-y-4">
         <div className="grid gap-4 sm:grid-cols-2">
@@ -93,37 +93,37 @@ export default function GstDeadlineChecker() {
             <div key={d.form + d.due} className="card" data-testid="deadline-item">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <h3 className="font-semibold text-white">{d.form}</h3>
-                  <p className="mt-1 text-sm text-zinc-400">{d.desc}</p>
-                  <p className="mt-1 text-xs text-zinc-500" data-testid="late-fee">Late fee: {d.lateFee}</p>
+                  <h3 className="font-semibold text-ink">{d.form}</h3>
+                  <p className="mt-1 text-sm text-ink-3">{d.desc}</p>
+                  <p className="mt-1 text-xs text-ink-3" data-testid="late-fee">Late fee: {d.lateFee}</p>
                 </div>
-                <div className="shrink-0 rounded-lg bg-ink-3 px-3 py-1 text-sm font-medium text-gold">{d.due}</div>
+                <div className="shrink-0 rounded-lg bg-surface-3 px-3 py-1 text-sm font-medium text-da">{d.due}</div>
               </div>
             </div>
           ))}
         </div>
       ) : (
-        <p className="mt-6 text-zinc-500">No deadlines for this month under the selected frequency.</p>
+        <p className="mt-6 text-ink-3">No deadlines for this month under the selected frequency.</p>
       )}
 
       <div className="mt-8 space-y-4">
-        <h2 className="text-lg font-semibold text-white">Annual Deadlines</h2>
+        <h2 className="text-lg font-semibold text-ink">Annual Deadlines</h2>
         {ANNUAL_DEADLINES.map((d) => (
           <div key={d.form} className="card" data-testid="annual-item">
             <div className="flex items-start justify-between gap-4">
               <div>
-                <h3 className="font-semibold text-white">{d.form}</h3>
-                <p className="mt-1 text-sm text-zinc-400">{d.desc}</p>
-                <p className="mt-1 text-xs text-zinc-500">Late fee: {d.lateFee}</p>
+                <h3 className="font-semibold text-ink">{d.form}</h3>
+                <p className="mt-1 text-sm text-ink-3">{d.desc}</p>
+                <p className="mt-1 text-xs text-ink-3">Late fee: {d.lateFee}</p>
               </div>
-              <div className="shrink-0 rounded-lg bg-ink-3 px-3 py-1 text-sm font-medium text-gold">{d.due}</div>
+              <div className="shrink-0 rounded-lg bg-surface-3 px-3 py-1 text-sm font-medium text-da">{d.due}</div>
             </div>
           </div>
         ))}
       </div>
 
       <div className="card mt-10 text-center">
-        <p className="mb-3 text-white">Want automated reminders for all your deadlines?</p>
+        <p className="mb-3 text-ink">Want automated reminders for all your deadlines?</p>
         <Link to="/" className="btn">Run the free health check</Link>
       </div>
 

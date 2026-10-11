@@ -17,9 +17,9 @@ const QUESTIONS = [
 ];
 
 function getGrade(score) {
-  if (score >= 80) return { label: 'Excellent', color: 'text-green-400', bg: 'bg-green-400/10' };
-  if (score >= 60) return { label: 'Needs Improvement', color: 'text-yellow-400', bg: 'bg-yellow-400/10' };
-  return { label: 'At Risk', color: 'text-red-400', bg: 'bg-red-400/10' };
+  if (score >= 80) return { label: 'Excellent', color: 'text-green-600', bg: 'bg-green-50' };
+  if (score >= 60) return { label: 'Needs Improvement', color: 'text-yellow-600', bg: 'bg-yellow-50' };
+  return { label: 'At Risk', color: 'text-red-500', bg: 'bg-red-50' };
 }
 
 export default function ComplianceScore() {
@@ -42,18 +42,18 @@ export default function ComplianceScore() {
 
   return (
     <div className="mx-auto max-w-2xl">
-      <h1 className="mb-2 text-3xl font-bold text-white">Compliance Health Quiz</h1>
-      <p className="mb-6 text-zinc-400">Answer 10 questions to get your compliance health score. No login required.</p>
+      <h1 className="mb-2 text-3xl font-bold text-ink">Compliance Health Quiz</h1>
+      <p className="mb-6 text-ink-3">Answer 10 questions to get your compliance health score. No login required.</p>
 
       {!submitted ? (
         <>
           <div className="space-y-4">
             {QUESTIONS.map((q, i) => (
               <div key={i} className="card" data-testid="question">
-                <p className="mb-3 text-sm text-zinc-200"><span className="mr-2 font-semibold text-gold">{i + 1}.</span>{q}</p>
+                <p className="mb-3 text-sm text-ink"><span className="mr-2 font-semibold text-da">{i + 1}.</span>{q}</p>
                 <div className="flex gap-3">
-                  <button onClick={() => toggle(i, true)} className={`btn-ghost !py-1 !px-4 !text-sm ${answers[i] === true ? '!border-green-400 !text-green-400' : ''}`}>Yes</button>
-                  <button onClick={() => toggle(i, false)} className={`btn-ghost !py-1 !px-4 !text-sm ${answers[i] === false ? '!border-red-400 !text-red-400' : ''}`}>No</button>
+                  <button onClick={() => toggle(i, true)} className={`btn-ghost !py-1 !px-4 !text-sm ${answers[i] === true ? '!border-green-500 !text-green-600' : ''}`}>Yes</button>
+                  <button onClick={() => toggle(i, false)} className={`btn-ghost !py-1 !px-4 !text-sm ${answers[i] === false ? '!border-red-400 !text-red-500' : ''}`}>No</button>
                 </div>
               </div>
             ))}
@@ -68,19 +68,19 @@ export default function ComplianceScore() {
           </div>
 
           <div className="card">
-            <h2 className="mb-3 font-semibold text-white">Your answers</h2>
+            <h2 className="mb-3 font-semibold text-ink">Your answers</h2>
             <ul className="space-y-2 text-sm">
               {QUESTIONS.map((q, i) => (
                 <li key={i} className="flex items-start gap-2">
-                  <span className={answers[i] ? 'text-green-400' : 'text-red-400'}>{answers[i] ? '✓' : '✗'}</span>
-                  <span className="text-zinc-300">{q}</span>
+                  <span className={answers[i] ? 'text-green-600' : 'text-red-500'}>{answers[i] ? '✓' : '✗'}</span>
+                  <span className="text-ink-2">{q}</span>
                 </li>
               ))}
             </ul>
           </div>
 
           <div className="card text-center">
-            <p className="mb-3 text-white">Get a detailed compliance audit for your business.</p>
+            <p className="mb-3 text-ink">Get a detailed compliance audit for your business.</p>
             <Link to="/" className="btn">Run the free health check</Link>
           </div>
 
