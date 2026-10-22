@@ -123,7 +123,6 @@ export default function Home() {
       )}
 
       <FreeTools />
-      <Testimonials />
       <FAQ />
     </div>
   );
@@ -149,33 +148,6 @@ function FreeTools() {
             <h3 className="font-semibold text-ink">{t.name}</h3>
             <p className="mt-1 text-sm text-ink-3">{t.desc}</p>
           </Link>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function Testimonials() {
-  const reviews = [
-    { name: 'Sneha Patel', role: 'CA & Founder, Patel Tax Advisors', location: 'Ahmedabad', text: 'I manage compliance for 80+ clients. DoAide Comply replaced the Excel sheet I was using to track deadlines. The WhatsApp reminders mean I never chase clients for missed dates anymore. It has genuinely reduced my stress.' },
-    { name: 'Arjun Nair', role: 'CFO, Freshbasket Pvt Ltd', location: 'Bengaluru', text: 'We were paying ₹15,000+ in GST late fees every quarter before we started using Comply. The personalised calendar caught obligations we didn\'t even know applied to us. Zero penalties in the last two quarters.' },
-    { name: 'Deepa Iyer', role: 'Founder, PixelCraft Studios LLP', location: 'Chennai', text: 'As a creative agency, compliance was the last thing on our mind — until we got a ROC strike-off notice. DoAide Comply now sends us reminders for Form 11, Form 8, and TDS challans. We haven\'t missed a deadline since.' },
-    { name: 'Manish Gupta', role: 'Co-founder, QuickShip Logistics', location: 'Delhi', text: 'The free health check blew my mind — it showed us 47 filings for the year with penalty estimates. We upgraded to Pro for the automated reminders and it paid for itself in the first month by avoiding one late GST return.' },
-  ];
-  return (
-    <section className="mt-16">
-      <h2 className="mb-6 text-center text-2xl font-bold text-ink">
-        Trusted by <span className="text-da">Indian Businesses</span>
-      </h2>
-      <div className="grid gap-4 sm:grid-cols-2">
-        {reviews.map((t) => (
-          <div key={t.name} className="card">
-            <p className="mb-4 text-sm leading-relaxed text-ink-3">"{t.text}"</p>
-            <div>
-              <p className="text-sm font-semibold text-ink">{t.name}</p>
-              <p className="text-xs text-ink-3">{t.role} &middot; {t.location}</p>
-            </div>
-          </div>
         ))}
       </div>
     </section>

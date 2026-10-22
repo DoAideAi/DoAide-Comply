@@ -40,9 +40,9 @@ describe('Comply app', () => {
     expect(screen.getAllByTestId('calendar-item')).toHaveLength(1);
   });
 
-  it('shows pricing for all three plans', () => {
+  it('shows pricing for all three plans', async () => {
     renderAt('/pricing');
-    expect(screen.getByTestId('plan-free')).toHaveTextContent('₹0');
+    expect(await screen.findByTestId('plan-free')).toHaveTextContent('₹0');
     expect(screen.getByTestId('plan-pro')).toHaveTextContent('₹499');
     expect(screen.getByTestId('plan-enterprise')).toHaveTextContent('₹1,499');
   });
@@ -53,35 +53,35 @@ describe('Comply app', () => {
     expect(screen.getByText(/Complete GST Compliance Calendar/)).toBeInTheDocument();
   });
 
-  it('renders a static blog post directly without API', () => {
+  it('renders a static blog post directly without API', async () => {
     renderAt('/blog/gst-compliance-calendar-fy-2026-27');
-    expect(screen.getByRole('heading', { name: /Complete GST Compliance Calendar/ })).toBeInTheDocument();
+    expect(await screen.findByRole('heading', { name: /Complete GST Compliance Calendar/ })).toBeInTheDocument();
     expect(screen.getByText(/compliance calendar for Financial Year 2026-27 is packed/i)).toBeInTheDocument();
   });
 
-  it('generates widget embed code', () => {
+  it('generates widget embed code', async () => {
     renderAt('/widget');
-    expect(screen.getByLabelText(/embed code/i).value).toContain('data-doaide-comply');
+    expect((await screen.findByLabelText(/embed code/i)).value).toContain('data-doaide-comply');
   });
 
-  it('routes /embed to the widget page', () => {
+  it('routes /embed to the widget page', async () => {
     renderAt('/embed');
-    expect(screen.getByLabelText(/embed code/i).value).toContain('data-doaide-comply');
+    expect((await screen.findByLabelText(/embed code/i)).value).toContain('data-doaide-comply');
   });
 
-  it('routes to GST deadline checker', () => {
+  it('routes to GST deadline checker', async () => {
     renderAt('/tools/gst-deadline-checker');
-    expect(screen.getByRole('heading', { name: /GST Deadline Checker/i })).toBeInTheDocument();
+    expect(await screen.findByRole('heading', { name: /GST Deadline Checker/i })).toBeInTheDocument();
   });
 
-  it('routes to TDS rate finder', () => {
+  it('routes to TDS rate finder', async () => {
     renderAt('/tools/tds-rate-finder');
-    expect(screen.getByRole('heading', { name: /TDS Rate Finder/i })).toBeInTheDocument();
+    expect(await screen.findByRole('heading', { name: /TDS Rate Finder/i })).toBeInTheDocument();
   });
 
-  it('routes to compliance score quiz', () => {
+  it('routes to compliance score quiz', async () => {
     renderAt('/tools/compliance-score');
-    expect(screen.getByRole('heading', { name: /Compliance Health Quiz/i })).toBeInTheDocument();
+    expect(await screen.findByRole('heading', { name: /Compliance Health Quiz/i })).toBeInTheDocument();
   });
 
   it('redirects dashboard to login when signed out', async () => {
@@ -89,23 +89,35 @@ describe('Comply app', () => {
     await waitFor(() => expect(screen.getByRole('heading', { name: /log in/i })).toBeInTheDocument());
   });
 
-  it('routes to compliance calendar', () => {
+  it('routes to compliance calendar', async () => {
     renderAt('/tools/compliance-calendar');
-    expect(screen.getByRole('heading', { name: /Compliance Calendar FY 2026-27/i })).toBeInTheDocument();
+    expect(await screen.findByRole('heading', { name: /Compliance Calendar FY 2026-27/i })).toBeInTheDocument();
   });
 
-  it('routes to industry checklist', () => {
+  it('routes to industry checklist', async () => {
     renderAt('/tools/industry-checklist');
-    expect(screen.getByRole('heading', { name: /Industry Compliance Checklist/i })).toBeInTheDocument();
+    expect(await screen.findByRole('heading', { name: /Industry Compliance Checklist/i })).toBeInTheDocument();
   });
 
-  it('renders new blog posts in the static list', () => {
+  it('renders new blog posts in the static list', async () => {
     renderAt('/blog/compliance-checklist-new-company-india');
-    expect(screen.getByRole('heading', { name: /Ultimate Compliance Checklist for Newly Incorporated/i })).toBeInTheDocument();
+    expect(await screen.findByRole('heading', { name: /Ultimate Compliance Checklist for Newly Incorporated/i })).toBeInTheDocument();
   });
 
-  it('renders MSME blog post', () => {
+  it('renders MSME blog post', async () => {
     renderAt('/blog/msme-compliance-requirements-india');
-    expect(screen.getByRole('heading', { name: /MSME Compliance Requirements/i })).toBeInTheDocument();
+    expect(await screen.findByRole('heading', { name: /MSME Compliance Requirements/i })).toBeInTheDocument();
+  });
+
+  it('home page has no fabricated testimonials', () => {
+    renderAt('/');
+    expect(screen.queryByText(/Trusted by/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Sneha Patel/)).not.toBeInTheDocument();
+  });
+
+  it('shows a styled 404 page with a home link', async () => {
+    renderAt('/no-such-page');
+    expect(await screen.findByRole('heading', { name: /page not found/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /back to home/i })).toHaveAttribute('href', '/');
   });
 });

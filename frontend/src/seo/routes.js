@@ -3,7 +3,7 @@
 // /embed (duplicate of /widget) and the auth/dashboard pages are deliberately absent:
 // they get the noindex app shell.
 import { staticPosts } from '../data/blogPosts.js';
-import { INDUSTRIES } from '../pages/tools/IndustryChecklist.jsx';
+import { INDUSTRIES } from '../pages/tools/industryChecklistData.js';
 
 export const routes = [
   '/',
