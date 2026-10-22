@@ -9,17 +9,24 @@ export default function Layout({ children }) {
   return (
     <div className="min-h-screen flex flex-col bg-surface">
       <header className="border-b border-slate-200 bg-white">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
+        <div className="mx-auto flex max-w-5xl flex-col items-start gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
           <Link to="/" className="flex items-center gap-2 text-lg font-bold text-ink">
             <RobotFace size={28} /> DoAide <span className="text-da">|</span> <span className="text-da">Comply</span>
           </Link>
-          <nav className="flex items-center gap-5 text-sm">
-            <div className="relative">
-              <button onClick={() => setToolsOpen(!toolsOpen)} onBlur={() => setTimeout(() => setToolsOpen(false), 150)} className="text-ink-3 hover:text-da">
+          <nav aria-label="Main navigation" className="flex flex-wrap items-center gap-x-4 gap-y-3 text-sm">
+            <div className="relative" onBlur={event => {
+              if (!event.currentTarget.contains(event.relatedTarget)) setToolsOpen(false);
+            }} onKeyDown={event => {
+              if (event.key === 'Escape') {
+                setToolsOpen(false);
+                event.currentTarget.querySelector('button').focus();
+              }
+            }}>
+              <button aria-expanded={toolsOpen} aria-controls="free-tools-navigation" onClick={() => setToolsOpen(!toolsOpen)} className="text-ink-3 hover:text-da">
                 Free Tools ▾
               </button>
               {toolsOpen && (
-                <div className="absolute right-0 top-full z-10 mt-2 w-56 rounded-lg border border-slate-200 bg-white py-1 shadow-lg">
+                <div id="free-tools-navigation" onClick={() => setToolsOpen(false)} className="absolute left-0 top-full z-10 mt-2 w-56 rounded-lg border border-slate-200 bg-white py-1 shadow-lg sm:left-auto sm:right-0">
                   <Link to="/tools/gst-deadline-checker" className="block px-4 py-2 text-sm text-ink-2 hover:bg-surface-3 hover:text-da">GST Deadline Checker</Link>
                   <Link to="/tools/tds-rate-finder" className="block px-4 py-2 text-sm text-ink-2 hover:bg-surface-3 hover:text-da">TDS Rate Finder</Link>
                   <Link to="/tools/compliance-score" className="block px-4 py-2 text-sm text-ink-2 hover:bg-surface-3 hover:text-da">Compliance Health Quiz</Link>
