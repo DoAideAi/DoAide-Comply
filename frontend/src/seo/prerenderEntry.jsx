@@ -16,6 +16,16 @@ export async function renderRoute(pathname, container) {
       </MemoryRouter>,
     );
   });
+  // Lazy route chunks resolve asynchronously, so wait until the Suspense
+  // fallback is gone before capturing — otherwise the page is baked with the
+  // spinner and the default <head> instead of its own.
+  const deadline = Date.now() + 5000;
+  while (container.querySelector('[aria-label="Loading page"]') && Date.now() < deadline) {
+    await new Promise((r) => setTimeout(r, 10));
+  }
+  if (container.querySelector('[aria-label="Loading page"]')) {
+    throw new Error('route still showing Suspense fallback after 5s');
+  }
   // Let passive effects (setMeta, JSON-LD effects) run.
   for (let i = 0; i < 5; i++) await new Promise((r) => setTimeout(r, 0));
   return root;
