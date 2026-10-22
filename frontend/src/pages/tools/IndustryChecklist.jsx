@@ -27,7 +27,7 @@ export default function IndustryChecklist() {
     } else {
       setMeta(
         'Industry Compliance Checklists for Indian Businesses | DoAide Comply',
-        'Free GST, labour, licensing and ROC compliance checklists for manufacturing, IT services, retail and healthcare businesses in India.',
+        'Free GST, FSSAI, labour law, environmental, licensing and ROC compliance checklists for manufacturing, IT, retail, healthcare and food businesses in India.',
         '/tools/industry-checklist'
       );
     }

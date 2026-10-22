@@ -1,5 +1,65 @@
 export const staticPosts = [
   {
+    slug: 'business-compliance-india-2026',
+    title: 'Business Compliance in India 2026: The Complete Guide for Startups and SMEs',
+    description: 'Everything an Indian business must comply with in 2026 — GST, income tax, TDS, ROC/MCA filings, labour laws, FSSAI, environmental rules, and DPDP — organised by business stage, with penalties and deadlines.',
+    published: '2026-10-22',
+    keywords: ['business compliance India 2026', 'startup compliance checklist', 'SME compliance India', 'statutory compliance list', 'company compliance requirements India', 'compliance for small business India'],
+    faqs: [
+      { q: 'What are the mandatory compliances for a business in India in 2026?', a: 'Every registered business must handle income tax (advance tax and ITR), and most must handle GST returns. Companies and LLPs add ROC/MCA annual filings. Once you hire, PF (20+ employees), ESI (10+ employees), professional tax, and Shops & Establishments registration apply. Sector add-ons include FSSAI for food, pollution board consents for manufacturing, and DPDP Act obligations for any business processing personal data digitally.' },
+      { q: 'How much does non-compliance cost in India?', a: 'Late fees compound daily: GST returns cost ₹50/day, ROC forms ₹100/day with no cap, and TDS attracts 1.5% monthly interest. Larger exposures include DPDP Act penalties up to ₹250 crore, environmental prosecution up to 7 years imprisonment, and director disqualification for three consecutive years of missed ROC filings.' },
+      { q: 'What compliance applies to a business with fewer than 10 employees?', a: 'Small teams still need GST returns (if registered), advance tax, TDS on applicable payments, professional tax, Shops & Establishments registration, and minimum wage plus wage-payment timelines. PF and ESI generally start at 20 and 10 employees respectively, though voluntary registration is possible.' },
+      { q: 'Is there a single calendar of all Indian compliance deadlines for FY 2026-27?', a: 'Yes — the free DoAide Comply compliance calendar lists every GST, TDS, income tax, ROC, PF/ESI, FSSAI, labour and environmental deadline for FY 2026-27, filterable by category, with no login required.' },
+    ],
+    body: [
+      'Compliance in India is not one list — it is several overlapping ones: tax law, corporate law, labour law, sector licences, and now data protection. The businesses that get into trouble are rarely the ones that ignore compliance deliberately; they are the ones that never mapped which of the five lists apply to them. This guide organises business compliance in India for 2026 by stage, so you can build your own map in fifteen minutes.',
+
+      'Stage one: the moment you register. A proprietorship needs the fewest registrations — PAN, a current account, and usually GST once turnover crosses ₹40 lakh for goods or ₹20 lakh for services (lower in special category states). An LLP adds annual Form 11 (by May 30) and Form 8 (by October 30) ROC filings even with zero revenue. A Private Limited company adds the most: auditor appointment within 30 days, INC-20A commencement declaration within 180 days, a minimum of four board meetings a year, AOC-4 and MGT-7 after every AGM, and DIR-3 KYC for every director by September 30. Choose your entity knowing this recurring load — our checklist for new companies covers the first-year sequence in detail.',
+
+      'Stage two: the tax engine. GST is the highest-frequency obligation: GSTR-1 by the 11th and GSTR-3B by the 20th of every month (quarterly under QRMP if turnover is under ₹5 crore), the GSTR-9 annual return by December 31, and e-invoicing mandatory above ₹5 crore turnover. Income tax runs on the advance tax cycle — 15% by June 15, 45% by September 15, 75% by December 15, 100% by March 15 — plus the ITR itself. TDS makes you a tax collector: deduct on salaries, rent over ₹20,000/month, professional fees over ₹30,000/year and contractor payments, deposit by the 7th of the next month, and file quarterly returns.',
+
+      'Stage three: the first hire. Labour compliance scales in steps. From employee one: minimum wages, timely wage payment, professional tax, Shops & Establishments registration, and appointment letters. At 10 employees: ESI (for staff earning up to ₹21,000/month) and the POSH Act internal committee. At 20: PF becomes mandatory, with monthly ECR filing by the 15th. At 20+ contract workers (50 in some states): CLRA registration. Add the annual rhythm — statutory bonus by November 30, POSH annual report by January 31, gratuity within 30 days of any 5-year-tenure exit.',
+
+      'Stage four: sector licences. Food businesses need FSSAI — registration under ₹12 lakh turnover, a State licence to ₹20 crore, Central above — plus the Form D1 annual return by May 31 and labelling per the 2020 regulations. Manufacturers need pollution board Consent to Establish and Consent to Operate, the Form V environmental statement by September 30, and hazardous waste returns by June 30. Anyone placing plastic packaging on the market is a PIBO with EPR registration and targets. Retailers need Legal Metrology compliance for packaged goods and a municipal trade licence. Check the industry-wise checklists on this site for your exact list.',
+
+      'Stage five: data. The DPDP Act 2023 now applies to virtually every business that processes personal data digitally — customer databases, employee records, CCTV, analytics. The core obligations: collect with notice and consent, use for the stated purpose only, honour deletion requests, appoint a grievance officer, and report breaches. Penalties reach ₹250 crore per violation. Startups processing significant volumes should track whether they are notified as Significant Data Fiduciaries, which adds a DPO and audits.',
+
+      'The 2026 deadlines that catch businesses most often: DIR-3 KYC (September 30 — ₹5,000 and a deactivated DIN if missed), DPT-3 return of deposits (June 30 — covers director loans too), MSME-1 half-yearly returns on outstanding MSME dues (April 30 and October 31), the LUT renewal for zero-rated exporters (before April 1), and the GSTR-9/9C pair (December 31). None of these are hard; all of them are forgettable.',
+
+      'Build your system in three moves. First, map your obligations with the free compliance health check on our home page — it generates your list from entity type, state, turnover, and headcount. Second, put every deadline on the FY 2026-27 compliance calendar and assign an owner — a date nobody owns is a date nobody meets. Third, automate reminders: DoAide Comply Pro sends WhatsApp and email alerts before each due date. Compliance is cheapest when it is boring.',
+    ],
+  },
+  {
+    slug: 'gst-compliance-checklist-2026',
+    title: 'GST Compliance Checklist 2026: Every Return, Due Date and Reconciliation',
+    description: 'The complete GST compliance checklist for Indian businesses in 2026 — registration thresholds, GSTR-1/3B/9 due dates, e-invoicing, e-way bills, ITC reconciliation with GSTR-2B, QRMP, and the penalties for missing each one.',
+    published: '2026-10-22',
+    keywords: ['GST compliance checklist', 'GST checklist 2026', 'GSTR-1 due date', 'GSTR-3B due date', 'GST return filing checklist', 'ITC reconciliation GSTR-2B', 'e-invoice compliance', 'GST annual return GSTR-9'],
+    faqs: [
+      { q: 'What are the main GST returns a regular taxpayer files in 2026?', a: 'Monthly filers submit GSTR-1 (outward supplies) by the 11th and GSTR-3B (summary with tax payment) by the 20th of the following month. QRMP taxpayers (turnover up to ₹5 crore) file both quarterly — GSTR-1 by the 13th and GSTR-3B by the 22nd or 24th after the quarter — while paying tax monthly via PMT-06. The GSTR-9 annual return is due December 31, with GSTR-9C added above ₹5 crore turnover.' },
+      { q: 'What is the penalty for late GST return filing?', a: 'Late fees are ₹50 per day (₹25 CGST + ₹25 SGST), reduced to ₹20 per day for nil returns, capped per return based on turnover up to ₹10,000. Interest at 18% per annum applies on late tax payment. Two consecutive unfiled GSTR-3B returns block your GSTR-1, and six months of non-filing can lead to registration cancellation.' },
+      { q: 'Who needs e-invoicing in 2026?', a: 'E-invoicing is mandatory for businesses with aggregate turnover above ₹5 crore in any financial year since 2017-18, covering B2B invoices, exports, and credit/debit notes. Invoices without an IRN are treated as invalid — buyers cannot claim ITC on them, and transporting goods against them risks detention.' },
+      { q: 'How do I make sure my ITC claims are safe?', a: 'Claim only ITC that appears in your GSTR-2B, reconcile it against your purchase register every month before filing GSTR-3B, chase vendors who have not filed their GSTR-1, and pay vendors within 180 days (unpaid invoices require ITC reversal with interest). Rule 37A also requires reversal where the supplier never files GSTR-3B.' },
+    ],
+    body: [
+      'GST is the compliance obligation Indian businesses touch most often — at least 25 filings a year for a regular monthly filer, each with its own due date, late fee, and knock-on effects. This checklist walks the full GST year for 2026: registration, monthly returns, reconciliations, annual returns, and the special regimes, with the exact dates and penalties.',
+
+      'Registration first. The threshold is ₹40 lakh aggregate turnover for goods and ₹20 lakh for services (₹20 lakh/₹10 lakh in special category states), but registration becomes mandatory regardless of turnover for inter-state taxable supply of goods, e-commerce sellers, and those liable under reverse charge. Display the GSTIN on your signboard and invoices. If you sell through Amazon, Flipkart, Zomato or Swiggy, reconcile the TCS they deduct (visible in GSTR-2B) every month.',
+
+      'The monthly rhythm for regular filers: GSTR-1 by the 11th with invoice-level outward supplies and HSN summary, then GSTR-3B by the 20th with the summary and tax payment. The order matters — GSTR-1 populates your buyers\u2019 GSTR-2B, and your own 3B liability auto-populates from your GSTR-1, so mismatches between the two now trigger DRC-01B/01C notices. File nil returns too: a nil GSTR-3B can be filed by SMS, and skipping it still accrues ₹20/day.',
+
+      'QRMP, if your turnover is up to ₹5 crore, trades frequency for attention: GSTR-1 by the 13th of the month after the quarter (with the optional IFF for B2B invoices in months one and two), GSTR-3B by the 22nd or 24th depending on your state, but tax still flows monthly through PMT-06 by the 25th. Composition taxpayers file CMP-08 quarterly by the 18th and the GSTR-4 annual return by June 30.',
+
+      'ITC is where the money leaks. The monthly discipline: download GSTR-2B, match it line-by-line against the purchase register, claim only matched credit, and park unmatched invoices in a follow-up list for vendors. The 180-day payment rule, Rule 37A reversals for non-filing suppliers, blocked credits under Section 17(5) (cars, food, club memberships, construction), and proportionate reversal for exempt supplies all need a monthly look. The annual reconciliation in GSTR-9 is painless only if the monthly one happened.',
+
+      'Documents in transit: e-invoices are mandatory above ₹5 crore turnover for B2B supplies — generate the IRN before or at invoicing, not at month-end. E-way bills are required for goods movements above ₹50,000 (₹1 lakh intra-state in some states), with validity tied to distance. Detention under Section 129 costs 200% of the tax as penalty, so build both into the dispatch workflow, not the accounts workflow.',
+
+      'The annual close: GSTR-9 for FY 2025-26 is due December 31, 2026 (optional below ₹2 crore turnover, mandatory above), and GSTR-9C self-certified reconciliation joins it above ₹5 crore. Before filing, reconcile three pairs: books vs GSTR-1, books vs GSTR-3B, and claimed ITC vs GSTR-2B. Exporters should renew the LUT before April 1 to keep exports zero-rated without upfront IGST, and anyone with unclaimed ITC for FY 2025-26 has until the November 30, 2026 cut-off (Section 16(4)) to claim it.',
+
+      'Put the whole cycle on autopilot: the free FY 2026-27 compliance calendar on this site lists every GST date alongside TDS, ROC and labour deadlines, the GST deadline checker tells you exactly which returns apply to your registration type, and DoAide Comply Pro sends WhatsApp reminders before each one. The cheapest GST penalty is the one that never accrues.',
+    ],
+  },
+  {
     slug: 'annual-compliance-calendar-2026-indian-companies',
     title: 'Annual Compliance Calendar 2026 for Indian Companies',
     description: 'Month-by-month compliance calendar for 2026 covering GST, TDS, ROC, PF/ESI, advance tax, and income tax deadlines for Private Limited, LLP, and OPC entities in India.',

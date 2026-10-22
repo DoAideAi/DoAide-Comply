@@ -13,11 +13,11 @@ describe('IndustryChecklist', () => {
     expect(screen.getByRole('heading', { name: /Industry Compliance Checklist/i })).toBeInTheDocument();
   });
 
-  it('renders the industry selector with all 4 industries', () => {
+  it('renders the industry selector with all 7 checklists', () => {
     wrap();
     const select = screen.getByLabelText(/select your industry/i);
     expect(select).toBeInTheDocument();
-    expect(select.querySelectorAll('option')).toHaveLength(4);
+    expect(select.querySelectorAll('option')).toHaveLength(7);
   });
 
   it('shows checklist items for the default industry (manufacturing)', () => {

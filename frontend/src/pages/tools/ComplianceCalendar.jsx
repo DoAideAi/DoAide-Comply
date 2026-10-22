@@ -41,6 +41,21 @@ const DEADLINES = [
 
   { category: 'GST', form: 'GSTR-9', title: 'GST Annual Return', fixedDates: ['2027-12-31'], lateFee: '₹200/day (max 0.5% of turnover)' },
   { category: 'GST', form: 'GSTR-9C', title: 'GST Reconciliation Statement (>₹5Cr)', fixedDates: ['2027-12-31'], lateFee: 'As per GSTR-9' },
+
+  { category: 'FSSAI', form: 'Form D1', title: 'FSSAI annual return FY 2025-26 (manufacturers & importers)', fixedDates: ['2026-05-31'], lateFee: '₹100/day, max 5x annual licence fee' },
+  { category: 'FSSAI', form: 'Form D2 (H1)', title: 'FSSAI half-yearly return — milk units (Apr–Sep)', fixedDates: ['2026-10-31'], lateFee: '₹100/day late fee' },
+  { category: 'FSSAI', form: 'Form D2 (H2)', title: 'FSSAI half-yearly return — milk units (Oct–Mar)', fixedDates: ['2027-04-30'], lateFee: '₹100/day late fee' },
+
+  { category: 'Labour', form: 'Bonus', title: 'Statutory bonus payment for FY 2025-26 (within 8 months of FY close)', fixedDates: ['2026-11-30'], lateFee: 'Fine + imprisonment up to 6 months' },
+  { category: 'Labour', form: 'POSH Report', title: 'POSH annual report to District Officer (calendar year 2026)', fixedDates: ['2027-01-31'], lateFee: '₹50,000 fine' },
+  { category: 'Labour', form: 'Form XXV', title: 'Contract Labour (CLRA) annual return for 2026', fixedDates: ['2027-02-15'], lateFee: 'Fine up to ₹1 lakh' },
+  { category: 'Labour', form: 'Form 21', title: 'Factories Act annual return for 2026', fixedDates: ['2027-01-31'], lateFee: 'Fine up to ₹1 lakh' },
+
+  { category: 'Environment', form: 'Form V', title: 'Environmental statement FY 2025-26 to SPCB', fixedDates: ['2026-09-30'], lateFee: 'CTO revocation + prosecution' },
+  { category: 'Environment', form: 'HW Form 4', title: 'Hazardous waste annual return FY 2025-26', fixedDates: ['2026-06-30'], lateFee: 'Fine + imprisonment up to 7 years (EPA)' },
+  { category: 'Environment', form: 'Plastic EPR', title: 'Plastic EPR annual return FY 2025-26 (PIBOs)', fixedDates: ['2026-06-30'], lateFee: 'Environmental compensation per tonne' },
+  { category: 'Environment', form: 'E-Waste Return', title: 'E-waste EPR annual return FY 2025-26', fixedDates: ['2026-06-30'], lateFee: 'Registration suspension' },
+  { category: 'Environment', form: 'EC Compliance', title: 'Half-yearly EC compliance report', fixedDates: ['2026-06-01', '2026-12-01'], lateFee: 'EC revocation' },
 ];
 
 const FY_START = new Date(2026, 3, 1);
@@ -60,7 +75,7 @@ const MONTHS_IN_FY = [
   { label: 'Mar 2027', year: 2027, month: 3 },
 ];
 
-const CATEGORIES = ['All', 'GST', 'TDS/TCS', 'Income Tax', 'ROC', 'PF/ESI', 'Professional Tax'];
+const CATEGORIES = ['All', 'GST', 'TDS/TCS', 'Income Tax', 'ROC', 'PF/ESI', 'Professional Tax', 'FSSAI', 'Labour', 'Environment'];
 
 function toDate(str) {
   return new Date(str + 'T00:00:00');
@@ -123,8 +138,8 @@ export default function ComplianceCalendar() {
 
   useEffect(() => {
     setMeta(
-      'Free Compliance Calendar FY 2026-27 — GST, TDS, ROC, PF/ESI Due Dates | DoAide Comply',
-      'Complete compliance calendar for Indian businesses: every GST, TDS, ROC, PF/ESI, Income Tax and Professional Tax deadline for FY 2026-27. No login required.'
+      'Free Compliance Calendar FY 2026-27 — GST, TDS, ROC, FSSAI, Labour Due Dates | DoAide Comply',
+      'Complete compliance calendar for Indian businesses: every GST, TDS, ROC, PF/ESI, Income Tax, FSSAI, labour law and environmental deadline for FY 2026-27. No login required.'
     );
   }, []);
 
