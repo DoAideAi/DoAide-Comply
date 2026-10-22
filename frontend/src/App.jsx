@@ -30,6 +30,7 @@ export default function App() {
         <Route path="/tools/roc-filing-tracker" element={<RocFilingTracker />} />
         <Route path="/tools/compliance-calendar" element={<ComplianceCalendar />} />
         <Route path="/tools/industry-checklist" element={<IndustryChecklist />} />
+        <Route path="/tools/industry-checklist/:industry" element={<IndustryChecklist />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />} />

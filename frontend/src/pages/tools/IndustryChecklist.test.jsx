@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { describe, expect, it } from 'vitest';
 import IndustryChecklist, { INDUSTRIES } from './IndustryChecklist.jsx';
 
@@ -71,6 +71,23 @@ describe('IndustryChecklist', () => {
     wrap('/tools/industry-checklist?industry=healthcare');
     const items = screen.getAllByTestId('checklist-item');
     expect(items.length).toBe(INDUSTRIES.healthcare.items.length);
+  });
+
+  it('renders the industry from the path and canonicalises to it', () => {
+    render(
+      <MemoryRouter initialEntries={['/tools/industry-checklist/retail']}>
+        <Routes><Route path="/tools/industry-checklist/:industry" element={<IndustryChecklist />} /></Routes>
+      </MemoryRouter>
+    );
+    expect(screen.getAllByTestId('checklist-item').length).toBe(INDUSTRIES.retail.items.length);
+    expect(document.title).toMatch(/^Retail Compliance Checklist India/);
+    expect(document.querySelector('link[rel="canonical"]').getAttribute('href'))
+      .toBe('https://comply.doaide.com/tools/industry-checklist/retail');
+  });
+
+  it('gives the index page a generic title', () => {
+    wrap();
+    expect(document.title).toMatch(/^Industry Compliance Checklists/);
   });
 
   it('all industries have at least 15 checklist items', () => {

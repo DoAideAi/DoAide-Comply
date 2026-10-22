@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { setMeta } from '../Home.jsx';
 import ShareButtons from '../../components/ShareButtons.jsx';
 
@@ -110,18 +110,29 @@ export { INDUSTRIES };
 
 export default function IndustryChecklist() {
   const [params] = useSearchParams();
-  const initialIndustry = INDUSTRIES[params.get('industry')] ? params.get('industry') : 'manufacturing';
+  // /tools/industry-checklist/:industry is the indexable URL; ?industry= is kept for old links.
+  const routeIndustry = useParams().industry || params.get('industry');
+  const initialIndustry = INDUSTRIES[routeIndustry] ? routeIndustry : 'manufacturing';
   const [selected, setSelected] = useState(initialIndustry);
   const [areaFilter, setAreaFilter] = useState('All');
 
   const industry = INDUSTRIES[selected];
 
   useEffect(() => {
-    setMeta(
-      `${industry.name} Compliance Checklist India | DoAide Comply`,
-      industry.description
-    );
-  }, [industry]);
+    if (INDUSTRIES[routeIndustry]) {
+      setMeta(
+        `${industry.name} Compliance Checklist India | DoAide Comply`,
+        industry.description,
+        `/tools/industry-checklist/${routeIndustry}`
+      );
+    } else {
+      setMeta(
+        'Industry Compliance Checklists for Indian Businesses | DoAide Comply',
+        'Free GST, labour, licensing and ROC compliance checklists for manufacturing, IT services, retail and healthcare businesses in India.',
+        '/tools/industry-checklist'
+      );
+    }
+  }, [industry, routeIndustry]);
 
   const areas = useMemo(() => {
     const set = new Set(industry.items.map((i) => i.area));

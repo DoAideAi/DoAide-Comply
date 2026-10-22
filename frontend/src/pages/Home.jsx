@@ -7,10 +7,37 @@ import RobotFace from '../components/RobotFace.jsx';
 const TYPES = { pvt_ltd: 'Private Limited', llp: 'LLP', proprietorship: 'Proprietorship' };
 const inr = (n) => '₹' + Number(n).toLocaleString('en-IN');
 
-export function setMeta(title, description) {
+export const SITE_URL = 'https://comply.doaide.com';
+
+export function canonicalFor(pathname) {
+  const clean = (pathname || '/').replace(/\/+$/, '');
+  return clean ? SITE_URL + clean : SITE_URL + '/';
+}
+
+function upsertTag(tag, attr, key) {
+  let el = document.head.querySelector(`${tag}[${attr}="${key}"]`);
+  if (!el) {
+    el = document.createElement(tag);
+    el.setAttribute(attr, key);
+    document.head.appendChild(el);
+  }
+  return el;
+}
+
+// Sets the page's own title, description, canonical and Open Graph / Twitter tags.
+// scripts/prerender.mjs bakes the result into dist/<route>/index.html at build time.
+export function setMeta(title, description, canonicalPath) {
   document.title = title;
-  const m = document.querySelector('meta[name="description"]');
-  if (m && description) m.setAttribute('content', description);
+  const url = canonicalFor(canonicalPath || window.location.pathname);
+  upsertTag('link', 'rel', 'canonical').setAttribute('href', url);
+  upsertTag('meta', 'property', 'og:url').setAttribute('content', url);
+  upsertTag('meta', 'property', 'og:title').setAttribute('content', title);
+  upsertTag('meta', 'name', 'twitter:title').setAttribute('content', title);
+  if (description) {
+    upsertTag('meta', 'name', 'description').setAttribute('content', description);
+    upsertTag('meta', 'property', 'og:description').setAttribute('content', description);
+    upsertTag('meta', 'name', 'twitter:description').setAttribute('content', description);
+  }
 }
 
 export default function Home() {
@@ -26,7 +53,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setMeta('Free Compliance Calendar for Indian Businesses FY 2026-27 | DoAide Comply');
+    setMeta('Free Compliance Calendar for Indian Businesses FY 2026-27 | DoAide Comply', 'Free compliance health check: get GST, TDS, ROC, PF/ESI, income tax and professional tax due dates with late-fee penalties for your Pvt Ltd, LLP or proprietorship. FY 2026-27.');
     api('/public/meta').then((m) => setStates(m.states)).catch(() => setStates(['Maharashtra', 'Karnataka', 'Delhi']));
   }, []);
 
