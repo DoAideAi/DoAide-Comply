@@ -5,14 +5,42 @@ import { setMeta } from './Home.jsx';
 import { staticPosts } from '../data/blogPosts.js';
 import ShareButtons from '../components/ShareButtons.jsx';
 
+function useBlogIndexSchema(posts) {
+  useEffect(() => {
+    if (!posts.length) return;
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'Compliance Blog',
+      description: 'GST, TDS, ROC and payroll compliance guides for Indian businesses.',
+      url: 'https://comply.doaide.com/blog',
+      publisher: { '@type': 'Organization', name: 'DoAide Comply', url: 'https://comply.doaide.com' },
+      mainEntity: {
+        '@type': 'ItemList',
+        itemListElement: posts.slice(0, 20).map((p, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          url: `https://comply.doaide.com/blog/${p.slug}`,
+          name: p.title,
+        })),
+      },
+    });
+    document.head.appendChild(script);
+    return () => { document.head.removeChild(script); };
+  }, [posts]);
+}
+
 export function Blog() {
   const [apiPosts, setApiPosts] = useState([]);
   useEffect(() => {
-    setMeta('Compliance Blog | DoAide Comply', 'GST, TDS, ROC and payroll compliance guides for Indian businesses.');
+    setMeta('Compliance Blog — GST, TDS & ROC Guides | DoAide Comply', 'GST, TDS, ROC and payroll compliance guides for Indian businesses.');
     api('/public/blog').then(setApiPosts).catch(() => {});
   }, []);
   const allPosts = [...apiPosts.filter((p) => !staticPosts.some((s) => s.slug === p.slug)), ...staticPosts]
     .sort((a, b) => b.published.localeCompare(a.published));
+  useBlogIndexSchema(allPosts);
   return (
     <div>
       <h1 className="mb-6 text-3xl font-bold text-ink">Compliance guides</h1>
@@ -37,11 +65,11 @@ export function BlogPost() {
 
   useEffect(() => {
     if (staticPost) {
-      setMeta(`${staticPost.title} | DoAide Comply`, staticPost.description);
+      setMeta(`${staticPost.title} | DoAide Comply`, staticPost.description, undefined, { ogType: 'article' });
       return;
     }
     api(`/public/blog/${slug}`)
-      .then((p) => { setPost(p); setMeta(`${p.title} | DoAide Comply`, p.description); })
+      .then((p) => { setPost(p); setMeta(`${p.title} | DoAide Comply`, p.description, undefined, { ogType: 'article' }); })
       .catch(() => setMissing(true));
   }, [slug, staticPost]);
 

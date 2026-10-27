@@ -35,6 +35,8 @@ const SECTION_NAMES = { blog: 'Blog', tools: 'Free Tools' }
 // Canonical and og:url always point at the route itself, and every sub-page gets a
 // BreadcrumbList. The middle crumb is only added when that section page exists
 // (Comply has /blog but no /tools index), so the trail never links to a 404.
+export const DEFAULT_OG_IMAGE = SITE_URL + '/og-default.png'
+
 export function finalizeHead(document, route, knownRoutes = []) {
   const url = canonicalUrl(route)
   const link = upsert(document, 'link[rel="canonical"]', () => {
@@ -49,6 +51,30 @@ export function finalizeHead(document, route, knownRoutes = []) {
     return el
   })
   ogUrl.setAttribute('content', url)
+
+  // Ensure og:image and twitter:image are present on every page
+  const ogImg = upsert(document, 'meta[property="og:image"]', () => {
+    const el = document.createElement('meta')
+    el.setAttribute('property', 'og:image')
+    return el
+  })
+  if (!ogImg.getAttribute('content')) ogImg.setAttribute('content', DEFAULT_OG_IMAGE)
+  const twImg = upsert(document, 'meta[name="twitter:image"]', () => {
+    const el = document.createElement('meta')
+    el.setAttribute('name', 'twitter:image')
+    return el
+  })
+  if (!twImg.getAttribute('content')) twImg.setAttribute('content', DEFAULT_OG_IMAGE)
+
+  // Blog posts get og:type "article", everything else stays "website"
+  if (route.startsWith('/blog/') && route !== '/blog') {
+    const ogType = upsert(document, 'meta[property="og:type"]', () => {
+      const el = document.createElement('meta')
+      el.setAttribute('property', 'og:type')
+      return el
+    })
+    ogType.setAttribute('content', 'article')
+  }
 
   if (route !== '/' && !hasSchemaType(document, 'BreadcrumbList')) {
     const segments = route.split('/').filter(Boolean)

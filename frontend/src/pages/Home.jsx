@@ -26,13 +26,21 @@ function upsertTag(tag, attr, key) {
 
 // Sets the page's own title, description, canonical and Open Graph / Twitter tags.
 // scripts/prerender.mjs bakes the result into dist/<route>/index.html at build time.
-export function setMeta(title, description, canonicalPath) {
+// opts.ogType defaults to "website"; pass "article" for blog posts.
+// opts.ogImage overrides the default social-share image.
+const DEFAULT_OG_IMAGE = SITE_URL + '/og-default.png';
+
+export function setMeta(title, description, canonicalPath, opts = {}) {
   document.title = title;
   const url = canonicalFor(canonicalPath || window.location.pathname);
   upsertTag('link', 'rel', 'canonical').setAttribute('href', url);
   upsertTag('meta', 'property', 'og:url').setAttribute('content', url);
   upsertTag('meta', 'property', 'og:title').setAttribute('content', title);
   upsertTag('meta', 'name', 'twitter:title').setAttribute('content', title);
+  upsertTag('meta', 'property', 'og:type').setAttribute('content', opts.ogType || 'website');
+  const img = opts.ogImage || DEFAULT_OG_IMAGE;
+  upsertTag('meta', 'property', 'og:image').setAttribute('content', img);
+  upsertTag('meta', 'name', 'twitter:image').setAttribute('content', img);
   if (description) {
     upsertTag('meta', 'name', 'description').setAttribute('content', description);
     upsertTag('meta', 'property', 'og:description').setAttribute('content', description);

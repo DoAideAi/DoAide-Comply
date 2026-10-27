@@ -53,9 +53,13 @@ export default function IndustryChecklist() {
 
   return (
     <div className="mx-auto max-w-3xl">
-      <h1 className="mb-2 text-3xl font-bold text-ink">Industry Compliance Checklist</h1>
+      <h1 className="mb-2 text-3xl font-bold text-ink">
+        {INDUSTRIES[routeIndustry] ? `${industry.name} Compliance Checklist` : 'Industry Compliance Checklist'}
+      </h1>
       <p className="mb-6 text-ink-3">
-        Complete compliance checklist by industry. Select your industry to see all applicable regulations, filing requirements, and penalties.
+        {INDUSTRIES[routeIndustry]
+          ? industry.description
+          : 'Complete compliance checklist by industry. Select your industry to see all applicable regulations, filing requirements, and penalties.'}
       </p>
 
       <div className="card mb-6">
