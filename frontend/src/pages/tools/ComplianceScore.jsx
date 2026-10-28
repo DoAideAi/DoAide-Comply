@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { setMeta } from '../Home.jsx';
 import ShareButtons from '../../components/ShareButtons.jsx';
+import { trackCalculation } from '../../lib/analytics';
 
 const QUESTIONS = [
   'Do you file GST returns on or before the due date every month?',
@@ -58,7 +59,7 @@ export default function ComplianceScore() {
               </div>
             ))}
           </div>
-          <button onClick={() => setSubmitted(true)} disabled={!allAnswered} className="btn mt-6 w-full">Get my score</button>
+          <button onClick={() => { setSubmitted(true); trackCalculation('ComplianceScore', { score }); }} disabled={!allAnswered} className="btn mt-6 w-full">Get my score</button>
         </>
       ) : (
         <div className="space-y-6">

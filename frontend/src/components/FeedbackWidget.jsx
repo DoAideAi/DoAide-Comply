@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { trackFeedback } from '../lib/analytics';
 
 export default function FeedbackWidget() {
   const [open, setOpen] = useState(false);
@@ -17,6 +18,7 @@ export default function FeedbackWidget() {
         body: JSON.stringify({ type, message: message.trim() }),
       });
       if (!res.ok) throw new Error();
+      trackFeedback('submit', { type });
       setStatus('sent');
       setMessage('');
       setTimeout(() => { setStatus(null); setOpen(false); }, 2000);
@@ -28,7 +30,7 @@ export default function FeedbackWidget() {
   return (
     <>
       <button
-        onClick={() => setOpen(true)}
+        onClick={() => { setOpen(true); trackFeedback('open'); }}
         aria-label="Send feedback"
         className="fixed bottom-4 left-4 z-50 bg-da hover:bg-da-light text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg transition-colors"
       >

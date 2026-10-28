@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { setMeta } from '../Home.jsx';
 import ShareButtons from '../../components/ShareButtons.jsx';
+import { trackCalculation } from '../../lib/analytics';
 
 const MONTHLY_DEADLINES = [
   { form: 'GSTR-1', desc: 'Outward supplies', day: 11 },
@@ -63,6 +64,10 @@ export default function GstDeadlineChecker() {
   }, []);
 
   const deadlines = frequency === 'monthly' ? getMonthlyDeadlines(monthIdx) : getQuarterlyDeadlines(monthIdx);
+
+  useEffect(() => {
+    trackCalculation('GstDeadlineChecker', { frequency, month: MONTHS[monthIdx] });
+  }, [frequency, monthIdx]);
 
   return (
     <div className="mx-auto max-w-2xl">

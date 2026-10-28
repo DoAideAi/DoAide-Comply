@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { setMeta } from '../Home.jsx';
 import ShareButtons from '../../components/ShareButtons.jsx';
+import { trackCalculation } from '../../lib/analytics';
 
 const FILINGS = [
   {
@@ -239,6 +240,7 @@ export default function RocFilingTracker() {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     setDeadlines(computeDeadlines(incorporationDate, agmDate, fyEnd, today));
+    trackCalculation('RocFilingTracker');
   }
 
   const whatsappText = deadlines

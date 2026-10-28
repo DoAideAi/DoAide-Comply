@@ -3,6 +3,7 @@ import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { setMeta } from '../Home.jsx';
 import ShareButtons from '../../components/ShareButtons.jsx';
 import { INDUSTRIES } from './industryChecklistData.js';
+import { trackCalculation } from '../../lib/analytics';
 
 
 export { INDUSTRIES };
@@ -64,7 +65,7 @@ export default function IndustryChecklist() {
 
       <div className="card mb-6">
         <label htmlFor="industry" className="label">Select your industry</label>
-        <select id="industry" className="input" value={selected} onChange={(e) => { setSelected(e.target.value); setAreaFilter('All'); }}>
+        <select id="industry" className="input" value={selected} onChange={(e) => { setSelected(e.target.value); setAreaFilter('All'); trackCalculation('IndustryChecklist', { industry: e.target.value }); }}>
           {Object.entries(INDUSTRIES).map(([key, ind]) => (
             <option key={key} value={key}>{ind.name}</option>
           ))}

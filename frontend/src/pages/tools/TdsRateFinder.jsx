@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { setMeta } from '../Home.jsx';
 import ShareButtons from '../../components/ShareButtons.jsx';
+import { trackCalculation } from '../../lib/analytics';
 
 const TDS_RATES = [
   { section: '192', payment: 'Salary', rateIndividual: 'Slab rates', rateOthers: 'N/A', threshold: 'Basic exemption' },
@@ -32,6 +33,10 @@ export default function TdsRateFinder() {
   useEffect(() => {
     setMeta('TDS Rate Finder — Indian TDS Rates 2026-27 | DoAide Comply', 'Look up TDS rates by payment type or section number for FY 2026-27.');
   }, []);
+
+  useEffect(() => {
+    if (search.length >= 2) trackCalculation('TdsRateFinder', { query: search });
+  }, [search]);
 
   const filtered = TDS_RATES.filter((r) => {
     const q = search.toLowerCase();

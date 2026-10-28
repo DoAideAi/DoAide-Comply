@@ -2,6 +2,7 @@ import { useEffect, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { setMeta } from '../Home.jsx';
 import ShareButtons from '../../components/ShareButtons.jsx';
+import { trackCalculation } from '../../lib/analytics';
 
 const DEADLINES = [
   { category: 'GST', form: 'GSTR-3B', title: 'GSTR-3B (Monthly filers)', day: 20, frequency: 'monthly', lateFee: '₹50/day (₹20 nil), max ₹10,000' },
@@ -187,7 +188,7 @@ export default function ComplianceCalendar() {
 
       <div className="mb-4 flex flex-wrap gap-2" role="tablist" aria-label="Filter by category">
         {CATEGORIES.map((c) => (
-          <button key={c} role="tab" aria-selected={category === c} onClick={() => setCategory(c)}
+          <button key={c} role="tab" aria-selected={category === c} onClick={() => { setCategory(c); trackCalculation('ComplianceCalendar', { category: c }); }}
             className={`rounded-full border px-3 py-1 text-sm ${category === c ? 'border-da bg-da text-white' : 'border-slate-300 text-ink-2 hover:border-da'}`}>
             {c}
           </button>

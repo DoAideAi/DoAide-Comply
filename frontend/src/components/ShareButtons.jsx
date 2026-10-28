@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { trackShare } from '../lib/analytics';
 
 export default function ShareButtons({ url, text = 'Check this out!' }) {
   const [copied, setCopied] = useState(false);
@@ -15,13 +16,13 @@ export default function ShareButtons({ url, text = 'Check this out!' }) {
 
   return (
     <div className="flex flex-wrap gap-3" aria-label="Share">
-      <a href={`https://wa.me/?text=${encodedText}%20${encoded}`} target="_blank" rel="noopener noreferrer" className="btn-ghost !py-1.5 !px-3 !text-sm">
+      <a href={`https://wa.me/?text=${encodedText}%20${encoded}`} target="_blank" rel="noopener noreferrer" onClick={() => trackShare('whatsapp', text)} className="btn-ghost !py-1.5 !px-3 !text-sm">
         WhatsApp
       </a>
-      <a href={`https://twitter.com/intent/tweet?text=${encodedText}&url=${encoded}`} target="_blank" rel="noopener noreferrer" className="btn-ghost !py-1.5 !px-3 !text-sm">
+      <a href={`https://twitter.com/intent/tweet?text=${encodedText}&url=${encoded}`} target="_blank" rel="noopener noreferrer" onClick={() => trackShare('twitter', text)} className="btn-ghost !py-1.5 !px-3 !text-sm">
         Twitter / X
       </a>
-      <button onClick={copyLink} className="btn-ghost !py-1.5 !px-3 !text-sm">
+      <button onClick={() => { copyLink(); trackShare('copy', text); }} className="btn-ghost !py-1.5 !px-3 !text-sm">
         {copied ? 'Copied!' : 'Copy link'}
       </button>
     </div>
